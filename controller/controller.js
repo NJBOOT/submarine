@@ -1,6 +1,5 @@
 var mongojs = require("mongojs");
 const db = require("../models");
-// const User = require("../models/User")
 
 const Controller = {
   getUser: (id, callback) => {
@@ -10,7 +9,6 @@ const Controller = {
   },
 
   addSubscription: (userId, newSub, callback) => {
-    console.log(userId);
     db.Subscription.create(newSub).then(response => {
       db.User.findOneAndUpdate(
         { _id: mongojs.ObjectId(userId) },

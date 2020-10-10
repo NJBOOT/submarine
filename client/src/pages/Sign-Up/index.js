@@ -18,7 +18,7 @@ class SignIn extends Component {
       firstname: "",
       lastname: "",
       email: "",
-      income: ""
+      income: "",
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -29,7 +29,7 @@ class SignIn extends Component {
     let { name, value } = event.target;
 
     this.setState({
-      [name]: value
+      [name]: value,
     });
   }
 
@@ -59,14 +59,19 @@ class SignIn extends Component {
           if (response.status === 200) {
             this.props.updateAuthStatus(true);
             this.props.updateUserInfo(response.data);
+            localStorage.setItem("id", response.data._id);
             this.props.history.push("/main");
           }
           if (response.status === 401) {
-            this.props.triggerAlert("Alert","Check your information and try again","Close")
+            this.props.triggerAlert(
+              "Alert",
+              "Check your information and try again",
+              "Close"
+            );
           }
         })
         .catch(err => {
-          throw (err)
+          throw err;
         });
     } else {
       this.props.sendAlert("Alert", formValidresponse, "CLOSE");
@@ -196,7 +201,11 @@ class SignIn extends Component {
                     </div>
                   </div>
                 </div>
-                <button className="buttons" id="sign-up-button" onClick={this.handleSubmit}>
+                <button
+                  className="buttons"
+                  id="sign-up-button"
+                  onClick={this.handleSubmit}
+                >
                   Sign Up
                 </button>
                 <Link to={"/"}>Already a member?</Link>

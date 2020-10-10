@@ -8,6 +8,7 @@ const app = express();
 // imports session, logger, passport, and path
 const middleware = require("../middleware");
 //
+
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

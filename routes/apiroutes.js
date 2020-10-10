@@ -69,15 +69,29 @@ module.exports = app => {
   });
 
   app.post("/api/addsub", (req, res) => {
-    API.controller.addSubscription(req.user._id, req.body, response => {
-      try {
-        API.controller.getUser(req.user._id, response => {
-          return res.json(scrubUser(response));
-        });
-      } catch (err) {
-        throw err;
-      }
-    });
+    if (!req.user) {
+      console.log(req.body);
+      API.controller.addSubscription(req.body.id, req.body, response => {
+        try {
+          API.controller.getUser(req.body.id, response => {
+            return res.json(scrubUser(response));
+          });
+        } catch (err) {
+          throw err;
+        }
+      });
+    } else {
+      console.log(req.user._id);
+      API.controller.addSubscription(req.user._id, req.body, response => {
+        try {
+          API.controller.getUser(req.user._id, response => {
+            return res.json(scrubUser(response));
+          });
+        } catch (err) {
+          throw err;
+        }
+      });
+    }
   });
 
   app.post("/api/removesub", (req, res) => {

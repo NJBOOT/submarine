@@ -3,18 +3,18 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Redirect
+  Redirect,
 } from "react-router-dom";
 import Main from "./pages/Subscription";
 import Stats from "./pages/Stats";
 import NoMatch from "./pages/NoMatch";
 import Navbar from "./components/Navbar";
-import SignUp from './pages/Sign-Up';
-import SignIn from './pages/Sign-In';
-import Alert from "./components/ModalAlert"
-import Confirm from "./components/ModalConfirm"
+import SignUp from "./pages/Sign-Up";
+import SignIn from "./pages/Sign-In";
+import Alert from "./components/ModalAlert";
+import Confirm from "./components/ModalConfirm";
 
-import './App.css';
+import "./App.css";
 const API = require("./utils/API");
 
 class App extends Component {
@@ -51,7 +51,7 @@ class App extends Component {
       subscriptions: userObject.subscriptions,
       email: userObject.email,
       income: userObject.income,
-      isAuthenticated: authStatus
+      isAuthenticated: authStatus,
     });
   };
 
@@ -59,7 +59,7 @@ class App extends Component {
     API.loginUser(userInfo)
       .then(response => {
         this.updateUserInfo(response.data);
-        console.log(response.data)
+        console.log(response.data);
       })
       .catch(err => {
         throw err;
@@ -77,9 +77,10 @@ class App extends Component {
             subscriptions: [],
             email: "",
             income: 0,
-            isAuthenticated: false
+            isAuthenticated: false,
           });
           localStorage.setItem("isAuthenticated", false);
+          localStorage.setItem("id", null);
         })
         .catch(err => {
           throw err;
@@ -89,8 +90,8 @@ class App extends Component {
   };
 
   resetConfirm = () => {
-    this.setState({ modalConfirm: false })
-  }
+    this.setState({ modalConfirm: false });
+  };
 
   isUserAuth = () => {
     return this.state.isAuthenticated;
@@ -101,22 +102,24 @@ class App extends Component {
   };
 
   handleConfirmClose = () => {
-    this.setState({ isShowingConfirm: false })
-  }
+    this.setState({ isShowingConfirm: false });
+  };
 
   triggerModal = (header, message, button) => {
     this.setState({ isShowingModal: true });
     this.setState({ modalHeader: header });
     this.setState({ modalMessage: message });
     this.setState({ button });
-  }
+  };
 
   triggerDelete = (subName, subId) => {
     this.setState({ isShowingConfirm: true });
     this.setState({ modalHeader: "Confirm Delete" });
-    this.setState({ modalMessage: "Please confirm you would like to delete " + subName });
-    this.setState({ subToDelete: subId })
-  }
+    this.setState({
+      modalMessage: "Please confirm you would like to delete " + subName,
+    });
+    this.setState({ subToDelete: subId });
+  };
 
   updateAuthStatus = status => {
     this.setState({ isAuthenticated: status });
@@ -130,48 +133,66 @@ class App extends Component {
         this.updateUserInfo(response.data);
       });
       return cb();
-    }
-    else {
-      this.triggerModal("Alert:","Please fill in all fields to submit","Close")
+    } else {
+      this.triggerModal(
+        "Alert:",
+        "Please fill in all fields to submit",
+        "Close"
+      );
     }
   };
 
-  removeSub = (subId) => {
-    this.setState({ isShowingConfirm: false })
-    API.deleteSubscription({ id: subId })
-      .then(response => {
-        this.updateUserInfo(response.data)
-      })
-  }
+  removeSub = subId => {
+    this.setState({ isShowingConfirm: false });
+    API.deleteSubscription({ id: subId }).then(response => {
+      this.updateUserInfo(response.data);
+    });
+  };
 
   render() {
     return (
       <Router>
         <div className="background-div">
-          <img className="background-div-image"
-            src="/images/underwater-802092_1920.jpg" alt="underwater"/>
+          <img
+            className="background-div-image"
+            src="/images/underwater-802092_1920.jpg"
+            alt="underwater"
+          />
         </div>
-        <div className="container-fluid" style={{ paddingLeft: 0, paddingRight: 0 }}>
+        <div
+          className="container-fluid"
+          style={{ paddingLeft: 0, paddingRight: 0 }}
+        >
           {/* <Navbar /> */}
           <Switch>
-            <Route exact path="/"
-              render={(props) => <SignIn {...props}
-                triggerAlert={this.triggerModal}
-                isUserAuth={this.isUserAuth}
-                updateAuthStatus={this.updateAuthStatus}
-                updateUserInfo={this.updateUserInfo} />}
+            <Route
+              exact
+              path="/"
+              render={props => (
+                <SignIn
+                  {...props}
+                  triggerAlert={this.triggerModal}
+                  isUserAuth={this.isUserAuth}
+                  updateAuthStatus={this.updateAuthStatus}
+                  updateUserInfo={this.updateUserInfo}
+                />
+              )}
             />
-            <Route exact path="/sign-up"
-              render={(props) => <SignUp {...props}
-                triggerAlert={this.triggerModal}
-                updateAuthStatus={this.updateAuthStatus}
-                updateUserInfo={this.updateUserInfo}
-                sendAlert={this.triggerModal} />}
+            <Route
+              exact
+              path="/sign-up"
+              render={props => (
+                <SignUp
+                  {...props}
+                  triggerAlert={this.triggerModal}
+                  updateAuthStatus={this.updateAuthStatus}
+                  updateUserInfo={this.updateUserInfo}
+                  sendAlert={this.triggerModal}
+                />
+              )}
             />
             <ProtectedRoute exact path="/main">
-              <Navbar
-                handleLogout={this.userLogout}
-                page="main" />
+              <Navbar handleLogout={this.userLogout} page="main" />
               <Main
                 subscriptions={this.state.subscriptions}
                 addSub={this.addSub}
@@ -179,9 +200,7 @@ class App extends Component {
               />
             </ProtectedRoute>
             <ProtectedRoute exact path="/stats">
-              <Navbar
-                handleLogout={this.userLogout}
-                page="stats" />
+              <Navbar handleLogout={this.userLogout} page="stats" />
               <Stats
                 windowWidth={this.state.windowWidth}
                 chartDimensions={this.state.chart}
@@ -199,15 +218,17 @@ class App extends Component {
           showMe={this.state.isShowingModal}
           header={this.state.modalHeader}
           message={this.state.modalMessage}
-          button={this.state.button} />
+          button={this.state.button}
+        />
         <Confirm
           handleClose={this.handleConfirmClose}
           showMe={this.state.isShowingConfirm}
           header={this.state.modalHeader}
           message={this.state.modalMessage}
           actionIfTrue={this.removeSub}
-          subToDelete={this.state.subToDelete} />
-      </ Router>
+          subToDelete={this.state.subToDelete}
+        />
+      </Router>
     );
   }
 }
@@ -227,8 +248,8 @@ function ProtectedRoute({ children, ...rest }) {
           // this.props.isUserAuth() ? (
           children
         ) : (
-            <Redirect to={{ pathname: "/" }} />
-          )
+          <Redirect to={{ pathname: "/" }} />
+        )
       }
     />
   );
