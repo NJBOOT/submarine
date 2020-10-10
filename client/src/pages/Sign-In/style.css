@@ -1,0 +1,145 @@
+.Submarine-big {
+  color: #f1c40f;
+  font-size: 7rem;
+  font-family: "Pacifico", cursive;
+  text-shadow: -2px -2px 0 #3498db, 2px -2px 0 #3498db, -2px 2px 0 #3498db,
+    2px 2px 0 #3498db;
+  margin-left: -3rem;
+}
+
+.logo {
+  padding-right: 5rem;
+}
+
+.subLogo-2 {
+  height: 0;
+  animation: bump 5s ease-in-out infinite;
+}
+
+@keyframes bump {
+  0% {
+    transform: translate(1rem, -5rem);
+  }
+
+  50% {
+    transform: translate(1rem, -8rem);
+  }
+
+  100% {
+    transform: translate(1rem, -5rem);
+  }
+}
+
+.sub-container {
+  padding-top: 30px;
+}
+
+.dive-in {
+  color: #f1c40f;
+  text-shadow: -1px -1px 0 #3498db, 1px -1px 0 #3498db, -1px 1px 0 #3498db,
+    1px 1px 0 #3498db;
+  padding-left: 10px;
+}
+
+.padding-div {
+  height: 50px;
+  width: 100%;
+}
+
+.form-container {
+  background-color: rgba(52, 152, 219, 0.3);
+  border-left: 2px solid #ecf0f1;
+  border-top: 2px solid #ecf0f1;
+  border-right: 2px solid #c0cdd1;
+  border-bottom: 2px solid #c0cdd1;
+  border-radius: 25px;
+  -webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.15);
+  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.15);
+  padding: 20px;
+  color: #f1c40f;
+}
+
+.buttons {
+  background-color: #34495e;
+  color: #f1c40f;
+  border-radius: 25px;
+  padding: 10px 25px;
+  font-size: 1em;
+  font-weight: 500;
+  -webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.15);
+  box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.15);
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.buttons:hover {
+  color: #f1c40f;
+  background-color: #3d5f81;
+}
+
+.mainlinks {
+  font-size: 24pt;
+  display: inline;
+  padding: 10px;
+  margin: 10px;
+}
+
+.page-link {
+  text-decoration: underline;
+}
+
+.activepage {
+  font-weight: 600;
+  text-decoration: none;
+}
+
+a {
+  color: #19222c;
+}
+
+.form-group {
+  padding: 0px 10px;
+}
+
+input {
+  margin-right: 40px;
+}
+.sign-up-link, .guest-link {
+  padding: 10px;
+}
+
+
+@media screen and (max-width: 480px) {
+  /* 480px for phone if necessary */
+  .Submarine-big {
+    font-size: 4.2rem;
+    margin-left: 1.1rem;
+  }
+
+  img {
+    width: 18rem;
+  }
+
+  @keyframes bump {
+    0% {
+      transform: translate(1rem, -4.2rem);
+    }
+
+    50% {
+      transform: translate(1rem, -5.5rem);
+    }
+
+    100% {
+      transform: translate(1rem, -4.2rem);
+    }
+  }
+
+  .form-container {
+    background-color: rgba(52, 152, 219, 0.5);
+    margin-left: 14px;
+  }
+
+  #sign-in-form {
+    padding-right: 15px;
+  }
+}

@@ -1,0 +1,12 @@
+.header-font {
+    color: #f1c40f;
+    font-size: 24pt;
+    font-family: "Pacifico", cursive;
+    text-shadow: -1px -1px 0 #3498db, 1px -1px 0 #3498db, -1px 1px 0 #3498db,
+      1px 1px 0 #3498db;
+  }
+
+.header-div {
+  text-align: center;
+  margin: 10px;
+}

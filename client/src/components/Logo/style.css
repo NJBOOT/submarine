@@ -1,0 +1,67 @@
+.logoHolder {
+  position: fixed;
+}
+
+.subLogo {
+  height: 0;
+  width: 2rem;
+  animation: nudge 30s linear infinite;
+  opacity: 0;
+}
+
+@keyframes nudge {
+  0% {
+    transform: translate(-2700px, 7.4rem);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(2900px, 7.4rem);
+    opacity: 1;
+  }
+}
+
+.subLogoAlt {
+  height: 0;
+  animation: float 30s linear infinite;
+  animation-delay: 19s;
+  opacity: 0;
+}
+
+@keyframes float {
+  0% {
+    transform: translate(2900px, 30rem);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(-2700px, 30rem);
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  @keyframes nudge {
+    0% {
+      transform: translate(-2700px, 2rem);
+      opacity: 1;
+    }
+
+    100% {
+      transform: translate(2900px, 2rem);
+      opacity: 1;
+    }
+  }
+
+  @keyframes float {
+    0% {
+      transform: translate(2900px, 18rem);
+      opacity: 1;
+    }
+
+    100% {
+      transform: translate(-2700px, 18rem);
+      opacity: 1;
+    }
+  }
+}
