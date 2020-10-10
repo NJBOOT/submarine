@@ -24,31 +24,32 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "concurrently": "^4.1.2",
-    "nodemon": "^1.18.7"
+    "concurrently": "^5.3.0",
+    "nodemon": "^2.0.4"
   },
   "bugs": {
     "url": "https://github.com/HillNathan/subscription-tracker/issues"
   },
   "homepage": "https://github.com/HillNathan/subscription-tracker#readme",
   "dependencies": {
-    "@material-ui/core": "^4.5.1",
-    "axios": "^0.19.0",
+    "@material-ui/core": "^4.11.0",
+    "axios": "^0.20.0",
     "bcryptjs": "^2.4.3",
-    "dotenv": "^8.1.0",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-passport": "^0.1.0",
-    "express-session": "^1.16.2",
-    "express-winston": "^4.0.0",
+    "express-session": "^1.17.1",
+    "express-winston": "^4.0.5",
     "if-env": "^1.0.4",
     "material-ui": "^0.20.2",
-    "mongojs": "^2.6.0",
-    "mongoose": "^5.7.5",
-    "passport": "^0.4.0",
+    "mongojs": "^3.1.0",
+    "mongoose": "^5.10.9",
+    "passport": "^0.4.1",
     "passport-local": "^1.0.0",
-    "react-router-dom": "^5.1.2",
+    "react-router-dom": "^5.2.0",
     "react-tap-event-plugin": "^3.0.3",
-    "recharts": "^1.8.3",
-    "winston": "^3.2.1"
+    "recharts": "^1.8.5",
+    "winston": "^3.3.3"
   }
 }
