@@ -1,6 +1,6 @@
 {
-  "name": "subscription-tracker",
-  "version": "1.0.0",
+  "name": "submarine",
+  "version": "1.1.0",
   "description": "",
   "main": "server.js",
   "engines": {
@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/HillNathan/subscription-tracker.git"
+    "url": "git+https://github.com/NJBOOT/submarine"
   },
   "keywords": [],
   "author": "",
@@ -28,14 +28,13 @@
     "nodemon": "^2.0.4"
   },
   "bugs": {
-    "url": "https://github.com/HillNathan/subscription-tracker/issues"
+    "url": "https://github.com/NJBOOT/submarine/issues"
   },
-  "homepage": "https://github.com/HillNathan/subscription-tracker#readme",
+  "homepage": "https://github.com/NJBOOT/submarine#readme",
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "axios": "^0.20.0",
     "bcryptjs": "^2.4.3",
-    "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-passport": "^0.1.0",

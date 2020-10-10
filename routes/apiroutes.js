@@ -107,6 +107,6 @@ module.exports = app => {
   });
 
   app.all("*", function (req, res) {
-    res.redirect("https://submarine-sub-tracker.herokuapp.com/");
+    res.redirect("https://pacific-falls-18824.herokuapp.com/");
   });
 };
