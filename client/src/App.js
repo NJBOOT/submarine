@@ -80,7 +80,7 @@ class App extends Component {
             isAuthenticated: false,
           });
           localStorage.setItem("isAuthenticated", false);
-          localStorage.setItem("id", null);
+          localStorage.setItem("uid", null);
         })
         .catch(err => {
           throw err;
@@ -143,8 +143,9 @@ class App extends Component {
   };
 
   removeSub = subId => {
+    let uid = localStorage.getItem("uid");
     this.setState({ isShowingConfirm: false });
-    API.deleteSubscription({ id: subId }).then(response => {
+    API.deleteSubscription({ id: subId, uid: uid }).then(response => {
       this.updateUserInfo(response.data);
     });
   };

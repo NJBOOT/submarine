@@ -50,7 +50,7 @@ function SubForm(props) {
                 name: document.getElementById("name-input").value,
                 cost: document.getElementById("cost-input").value,
                 frequency: document.getElementById("frequency-input").value,
-                id: localStorage.getItem("id"),
+                uid: localStorage.getItem("uid"),
               })
             }
             className="subscription-page-button"

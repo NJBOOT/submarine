@@ -69,35 +69,37 @@ module.exports = app => {
   });
 
   app.post("/api/addsub", (req, res) => {
+    let id;
     if (!req.user) {
-      console.log(req.body);
-      API.controller.addSubscription(req.body.id, req.body, response => {
-        try {
-          API.controller.getUser(req.body.id, response => {
-            return res.json(scrubUser(response));
-          });
-        } catch (err) {
-          throw err;
-        }
-      });
+      console.log("FROM BODY:" + req.body.uid);
+      id = req.body.uid;
     } else {
       console.log(req.user._id);
-      API.controller.addSubscription(req.user._id, req.body, response => {
-        try {
-          API.controller.getUser(req.user._id, response => {
-            return res.json(scrubUser(response));
-          });
-        } catch (err) {
-          throw err;
-        }
-      });
+      id = req.user._id;
     }
+    API.controller.addSubscription(id, req.body, response => {
+      try {
+        API.controller.getUser(id, response => {
+          return res.json(scrubUser(response));
+        });
+      } catch (err) {
+        throw err;
+      }
+    });
   });
 
   app.post("/api/removesub", (req, res) => {
-    API.controller.removeSubscription(req.user._id, req.body.id, response => {
+    let id;
+    if (!req.user) {
+      console.log("FROM BODY:" + req.body.uid);
+      id = req.body.uid;
+    } else {
+      console.log(req.user._id);
+      id = req.user._id;
+    }
+    API.controller.removeSubscription(id, req.body.id, response => {
       try {
-        API.controller.getUser(req.user._id, response => {
+        API.controller.getUser(id, response => {
           return res.json(scrubUser(response));
         });
       } catch (err) {

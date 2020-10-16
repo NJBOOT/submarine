@@ -59,7 +59,7 @@ class SignIn extends Component {
           if (response.status === 200) {
             this.props.updateAuthStatus(true);
             this.props.updateUserInfo(response.data);
-            localStorage.setItem("id", response.data._id);
+            localStorage.setItem("uid", response.data._id);
             this.props.history.push("/main");
           }
           if (response.status === 401) {
