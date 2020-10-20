@@ -47,9 +47,20 @@ module.exports = app => {
         password: req.body.password,
       });
 
+      // User.createUser(newUser, (err, user) => {
+      //   if (err) throw err;
+      //   res.send(user).end();
+      // });
       User.createUser(newUser, (err, user) => {
+        console.log("user created in post /register route", user);
         if (err) throw err;
-        res.send(user).end();
+        // added passport authentication so api/addsub post route could find user._id
+        passport.authenticate("local")(req, res, function () {
+          console.log("Following User has been registered");
+          console.log(user);
+          res.send(user).end();
+          // res.redirect("/");
+        });
       });
     } else {
       res.status(500).send('{ errors: "Passwords don\'t match" }').end();
@@ -69,17 +80,9 @@ module.exports = app => {
   });
 
   app.post("/api/addsub", (req, res) => {
-    let id;
-    if (!req.user) {
-      console.log("FROM BODY:" + req.body.uid);
-      id = req.body.uid;
-    } else {
-      console.log(req.user._id);
-      id = req.user._id;
-    }
-    API.controller.addSubscription(id, req.body, response => {
+    API.controller.addSubscription(req.user._id, req.body, response => {
       try {
-        API.controller.getUser(id, response => {
+        API.controller.getUser(req.user._id, response => {
           return res.json(scrubUser(response));
         });
       } catch (err) {
@@ -89,17 +92,9 @@ module.exports = app => {
   });
 
   app.post("/api/removesub", (req, res) => {
-    let id;
-    if (!req.user) {
-      console.log("FROM BODY:" + req.body.uid);
-      id = req.body.uid;
-    } else {
-      console.log(req.user._id);
-      id = req.user._id;
-    }
-    API.controller.removeSubscription(id, req.body.id, response => {
+    API.controller.removeSubscription(req.user._id, req.body.id, response => {
       try {
-        API.controller.getUser(id, response => {
+        API.controller.getUser(req.user._id, response => {
           return res.json(scrubUser(response));
         });
       } catch (err) {
@@ -112,3 +107,43 @@ module.exports = app => {
     res.redirect("https://pacific-falls-18824.herokuapp.com/");
   });
 };
+
+// app.post("/api/addsub", (req, res) => {
+//   let id;
+//   if (!req.user) {
+//     console.log("FROM BODY:" + req.body.uid);
+//     id = req.body.uid;
+//   } else {
+//     console.log(req.user._id);
+//     id = req.user._id;
+//   }
+//   API.controller.addSubscription(id, req.body, response => {
+//     try {
+//       API.controller.getUser(id, response => {
+//         return res.json(scrubUser(response));
+//       });
+//     } catch (err) {
+//       throw err;
+//     }
+//   });
+// });
+
+// app.post("/api/removesub", (req, res) => {
+//   let id;
+//   if (!req.user) {
+//     console.log("FROM BODY:" + req.body.uid);
+//     id = req.body.uid;
+//   } else {
+//     console.log(req.user._id);
+//     id = req.user._id;
+//   }
+//   API.controller.removeSubscription(id, req.body.id, response => {
+//     try {
+//       API.controller.getUser(id, response => {
+//         return res.json(scrubUser(response));
+//       });
+//     } catch (err) {
+//       throw err;
+//     }
+//   });
+// });
